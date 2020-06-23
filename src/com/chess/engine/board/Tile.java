@@ -20,7 +20,11 @@ public abstract class Tile {
 	 *  them.
 	 *  This way we implement immutability.
 	 */
-	private static final Map<Integer, EmptyTile> EMPTY_TILES_CACHE = createAllPossibleEmotyTiles();
+	private static final Map<Integer, EmptyTile> EMPTY_TILES_CACHE = createAllPossibleEmptyTiles();
+	
+	public static Tile createTile(final int tileCoordinate, final Piece piece) {
+		return (piece != null ? new OccupiedTile(tileCoordinate, piece) : EMPTY_TILES_CACHE.get(tileCoordinate));
+	}
 	
 	/**
 	 * Constructor
@@ -34,7 +38,7 @@ public abstract class Tile {
 	 * Function that creates a map containing all the ever existing empty tiles
 	 * @return An immutable map containing all the ever existing empty tiles
 	 */
-	private static Map<Integer, EmptyTile> createAllPossibleEmotyTiles() {
+	private static Map<Integer, EmptyTile> createAllPossibleEmptyTiles() {
 		final Map <Integer, EmptyTile> emptyTileMap = new HashMap<>();
 		
 		for (int i = 0; i < BoardUtils.NUM_TILES; i++) {

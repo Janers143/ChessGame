@@ -79,7 +79,6 @@ public class Pawn extends Piece {
 				if (board.getTile(candidateDestinationCoordinate).isTileOccupied()) {
 					final Piece pieceOnCandidate = board.getTile(candidateDestinationCoordinate).getPiece();
 					if (this.pieceAlliance != pieceOnCandidate.pieceAlliance) {
-						
 						// There's an enemy piece that can be attacked with the pawn to its right
 						//TODO There's more work to do here
 						legalMoves.add(new MajorMove(board, this, candidateDestinationCoordinate));
