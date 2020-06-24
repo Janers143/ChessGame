@@ -19,10 +19,10 @@ public class BoardUtils {
 	public static final boolean[] EIGHTH_COLUMN = initColumn(7);
 	
 	/** Array that tells you if the position is in the second row */
-	public static final boolean[] SECOND_ROW = null;
+	public static final boolean[] SECOND_ROW = initRow(8);
 	
 	/** Array that tells you if the position is in the seventh row */
-	public static final boolean[] SEVENTH_ROW = null;
+	public static final boolean[] SEVENTH_ROW = initRow(48);
 	
 	/** Number of tiles on the board */
 	public static final int NUM_TILES = 64;
@@ -35,6 +35,23 @@ public class BoardUtils {
 	 */
 	private BoardUtils() {
 		throw new RuntimeException("You can't instanciate this class");
+	}
+
+	/**
+	 * Function used to generate the array that tells you 
+	 * whether the coordinate is in the n row
+	 * @param rowNumber The number of the first tile
+	 * @return An array with the tiles that are in the columnNb column
+	 */
+	private static boolean[] initRow(int rowNumber) {
+		final boolean[] row = new boolean[NUM_TILES];
+		
+		do {
+			row[rowNumber] = true;
+			rowNumber++;
+		} while (rowNumber % NUM_TILES_PER_ROW != 0);
+		
+		return row;
 	}
 
 	/**

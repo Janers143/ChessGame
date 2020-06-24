@@ -26,5 +26,11 @@ public final class EmptyTile extends Tile {
 	public Piece getPiece() {
 		return null;
 	}
+	
+	@Override
+	public String toString() {
+		// An empty tile will be represented with a dash
+		return "-";
+	}
 
 }

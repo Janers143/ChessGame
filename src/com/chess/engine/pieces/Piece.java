@@ -57,7 +57,45 @@ public abstract class Piece {
 		return this.isFirstMove;
 	}
 
+	/**
+	 * Gets the piece position
+	 * @return The piece position
+	 */
 	public Integer getPiecePosition() {
 		return this.piecePosition;
+	}
+	
+	/**
+	 * Enum type to describe different pieces
+	 * @author antsalin
+	 *
+	 */
+	public enum PieceType {
+		
+		PAWN("P"),
+		KNIGHT("N"),
+		BISHOP("B"),
+		ROOK("R"),
+		QUEEN("Q"),
+		KING("K");
+		
+		/**
+		 * The type of piece: bishop, rook, ...
+		 */
+		private String pieceName;
+		
+		/**
+		 * Constructor
+		 * @param pieceName The type of piece
+		 */
+		PieceType(String pieceName) {
+			this.pieceName = pieceName;
+		}
+
+		@Override
+		public String toString() {
+			return this.pieceName;
+		}
+		
 	}
 }

@@ -34,4 +34,12 @@ public class OccupiedTile extends Tile {
 		return this.pieceOnTile;
 	}
 
+	@Override
+	public String toString() {
+		// If the tile is occupied, the result will depend on 
+		// the piece that occupies the tile
+		return (getPiece().getAlliance().isBlack() ?
+				getPiece().toString().toLowerCase() :
+				getPiece().toString());
+	}
 }

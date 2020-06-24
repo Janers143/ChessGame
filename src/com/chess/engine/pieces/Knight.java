@@ -30,7 +30,7 @@ public class Knight extends Piece {
 	 * @param piecePos The position of the knight in the board (a Tile)
 	 * @param pieceAll The alliance of the knight : black or white
 	 */
-	Knight(final int piecePos, final Alliance pieceAll) {
+	public Knight(final int piecePos, final Alliance pieceAll) {
 		super(piecePos, pieceAll);
 	}
 
@@ -116,5 +116,10 @@ public class Knight extends Piece {
 	private static boolean isEighthColumnExclusion(final int currentPos, final int candidateOffset) {
 		return BoardUtils.EIGHTH_COLUMN[currentPos] && (candidateOffset == 17 ||
 				candidateOffset == 10 || candidateOffset == -6 || candidateOffset == -15) ;
+	}
+	
+	@Override
+	public String toString() {
+		return Piece.PieceType.KNIGHT.toString();
 	}
 }
