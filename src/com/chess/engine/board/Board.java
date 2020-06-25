@@ -14,6 +14,9 @@ import com.chess.engine.pieces.Pawn;
 import com.chess.engine.pieces.Piece;
 import com.chess.engine.pieces.Queen;
 import com.chess.engine.pieces.Rook;
+import com.chess.engine.player.BlackPlayer;
+import com.chess.engine.player.Player;
+import com.chess.engine.player.WhitePlayer;
 import com.google.common.collect.ImmutableList;
 
 public class Board {
@@ -24,14 +27,18 @@ public class Board {
 	private final List<Tile> gameBoard;
 	
 	/**
-	 * A collection of all the white pieces
+	 * A collection of all the active white pieces
 	 */
 	private final Collection<Piece> whitePieces;
 	
 	/**
-	 * A collection of all the black pieces
+	 * A collection of all the active black pieces
 	 */
 	private final Collection<Piece> blackPieces;
+	
+	private final WhitePlayer whitePlayer;
+	
+	private final BlackPlayer blackPlayer;
 
 	/**
 	 * Constructor
@@ -44,6 +51,9 @@ public class Board {
 		
 		final Collection<Move> whiteStandardLegalMoves = calculateLegalMoves(this.whitePieces);
 		final Collection<Move> blackStandardLegalMoves = calculateLegalMoves(this.blackPieces);
+		
+		this.whitePlayer = new WhitePlayer(this, whiteStandardLegalMoves, blackStandardLegalMoves);
+		this.blackPlayer = new BlackPlayer(this, blackStandardLegalMoves, whiteStandardLegalMoves);
 	}
 
 	/**
@@ -219,5 +229,37 @@ public class Board {
 		public Board build() {
 			return new Board(this);
 		}
+	}
+
+	/**
+	 * Gets the white pieces
+	 * @return All the active white pieces
+	 */
+	public Collection<Piece> getWhitePieces() {
+		return this.whitePieces;
+	}
+	
+	/**
+	 * Gets the black pieces
+	 * @return All the active black pieces
+	 */
+	public Collection<Piece> getBlackPieces() {
+		return this.blackPieces;
+	}
+
+	/**
+	 * Gets the black player
+	 * @return The black player
+	 */
+	public Player getBlackPlayer() {
+		return this.blackPlayer;
+	}
+
+	/**
+	 * Gets the white player
+	 * @return The white player
+	 */
+	public Player getWhitePlayer() {
+		return this.whitePlayer;
 	}
 }

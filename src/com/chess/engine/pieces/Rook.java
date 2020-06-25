@@ -32,7 +32,7 @@ public class Rook extends Piece {
 	 * @param pieceAll The alliance of the rook : black or white
 	 */
 	public Rook(int piecePos, Alliance pieceAll) {
-		super(piecePos, pieceAll);
+		super(piecePos, pieceAll, PieceType.ROOK);
 	}
 
 	@Override

@@ -32,7 +32,7 @@ public class Bishop extends Piece {
 	 * @param pieceAll The alliance of the bishop : black or white
 	 */
 	public Bishop(int piecePos, Alliance pieceAll) {
-		super(piecePos, pieceAll);
+		super(piecePos, pieceAll, PieceType.BISHOP);
 	}
 
 	@Override

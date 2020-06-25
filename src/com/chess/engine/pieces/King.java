@@ -31,7 +31,7 @@ public class King extends Piece {
 	 * @param pieceAll The alliance of the king : black or white
 	 */
 	public King(int piecePos, Alliance pieceAll) {
-		super(piecePos, pieceAll);
+		super(piecePos, pieceAll, PieceType.KING);
 	}
 
 	@Override

@@ -31,7 +31,7 @@ public class Knight extends Piece {
 	 * @param pieceAll The alliance of the knight : black or white
 	 */
 	public Knight(final int piecePos, final Alliance pieceAll) {
-		super(piecePos, pieceAll);
+		super(piecePos, pieceAll, PieceType.KNIGHT);
 	}
 
 	@Override

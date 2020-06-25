@@ -22,16 +22,20 @@ public abstract class Piece {
 	/**	Boolean value telling whether the piece has already moved or not */
 	protected final Boolean isFirstMove;
 	
+	/** This piece piece type : Bishop, Pawn, Rook,... */
+	protected final PieceType pieceType;
+	
 	/**
 	 * Constructor
 	 * @param piecePos The position of the piece in the board (a Tile)
 	 * @param pieceAll The alliance of the piece : black or white
 	 */
-	Piece(final int piecePos, final Alliance pieceAll) {
+	Piece(final int piecePos, final Alliance pieceAll, final PieceType pieceType) {
 		this.pieceAlliance = pieceAll;
 		this.piecePosition = piecePos;
 		//TODO More work here...
 		this.isFirstMove = false;
+		this.pieceType = pieceType;
 	}
 	
 	/**
@@ -66,18 +70,44 @@ public abstract class Piece {
 	}
 	
 	/**
+	 * Gets the piece type : bishop, rook, queen,...
+	 * @return The piece type
+	 */
+	public PieceType getPieceType() {
+		return pieceType;
+	}
+	
+	/**
 	 * Enum type to describe different pieces
 	 * @author antsalin
 	 *
 	 */
 	public enum PieceType {
 		
-		PAWN("P"),
-		KNIGHT("N"),
-		BISHOP("B"),
-		ROOK("R"),
-		QUEEN("Q"),
-		KING("K");
+		PAWN("P") {
+			@Override
+			public boolean isKing() { return false; }
+		},
+		KNIGHT("N") {
+			@Override
+			public boolean isKing() { return false; }
+		},
+		BISHOP("B") {
+			@Override
+			public boolean isKing() { return false; }
+		},
+		ROOK("R") {
+			@Override
+			public boolean isKing() { return false; }
+		},
+		QUEEN("Q") {
+			@Override
+			public boolean isKing() { return false; }
+		},
+		KING("K") {
+			@Override
+			public boolean isKing() { return true; }
+		};
 		
 		/**
 		 * The type of piece: bishop, rook, ...
@@ -96,6 +126,12 @@ public abstract class Piece {
 		public String toString() {
 			return this.pieceName;
 		}
+
+		/**
+		 * Tells if the current piece is a king or not
+		 * @return A boolean telling whether the piece is a king or not
+		 */
+		public abstract boolean isKing();
 		
 	}
 }

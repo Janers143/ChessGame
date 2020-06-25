@@ -33,7 +33,7 @@ public class Queen extends Piece {
 	 * @param pieceAll The alliance of the queen : black or white
 	 */
 	public Queen(int piecePos, Alliance pieceAll) {
-		super(piecePos, pieceAll);
+		super(piecePos, pieceAll, PieceType.QUEEN);
 	}
 
 	@Override

@@ -29,7 +29,7 @@ public class Pawn extends Piece {
 	 * @param pieceAll The alliance of the rook : black or white
 	 */
 	public Pawn(int piecePos, Alliance pieceAll) {
-		super(piecePos, pieceAll);
+		super(piecePos, pieceAll, PieceType.PAWN);
 	}
 
 	@Override
