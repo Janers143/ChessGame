@@ -1,5 +1,6 @@
 package com.chess.engine.player;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -8,6 +9,7 @@ import com.chess.engine.board.Board;
 import com.chess.engine.board.Move;
 import com.chess.engine.pieces.King;
 import com.chess.engine.pieces.Piece;
+import com.google.common.collect.ImmutableList;
 
 /**
  * Describes a player
@@ -25,6 +27,9 @@ public abstract class Player {
 	/** A list of all the legal moves the player can make */
 	protected final Collection<Move> legalMoves;
 	
+	/** A boolean that tells if the player is in check or not */
+	private final boolean isInCheck;
+	
 	/**
 	 * Constructor
 	 * @param board The current state of the board
@@ -35,6 +40,23 @@ public abstract class Player {
 		this.board = board;
 		this.playerKing = getKing();
 		this.legalMoves = legalMoves;
+		this.isInCheck = !Player.calculateAttacksOnTile(this.getPlayerKing().getPiecePosition(), opponentLegalMoves).isEmpty();
+	}
+
+	/**
+	 * Calculates all the moves of the opponent that attack a tile
+	 * @param tileCoordinate The tile coordinate
+	 * @param opponentLegalMoves All the legal moves the opponent can make
+	 * @return A list of the moves the of the opponent that attack a tile
+	 */
+	private static Collection<Move> calculateAttacksOnTile(Integer tileCoordinate, Collection<Move> opponentLegalMoves) {
+		final List<Move> attackMoves = new ArrayList<>();
+		for (final Move move : opponentLegalMoves) {
+			if (tileCoordinate == move.getDestinationCoordinate()) {
+				attackMoves.add(move);
+			}
+		}
+		return ImmutableList.copyOf(attackMoves);
 	}
 
 	/**
@@ -69,8 +91,7 @@ public abstract class Player {
 	 * @return A boolean telling whether the player is in check or not
 	 */
 	public boolean isInCheck() {
-		//TODO Implement this method
-		return false;
+		return this.isInCheck;
 	}
 
 	/**
@@ -78,8 +99,22 @@ public abstract class Player {
 	 * @return A boolean telling whether the player is in check mate or not
 	 */
 	public boolean isInCheckMate() {
-		//TODO Implement this method
-		return false;
+		return this.isInCheck && !hasEscapeMoves();
+	}
+
+	/**
+	 * Tells if the player has some legal move that can be done
+	 * @return A boolean telling if the player has some legal move that can be done
+	 */
+	protected boolean hasEscapeMoves() {
+		boolean res = false;
+		for (final Move move : this.legalMoves) {
+			final MoveTransition transition = makeMove(move);
+			if (transition.getMoveStatus().isDone()) {
+				res = true;
+			}
+		}
+		return res;
 	}
 
 	/**
@@ -87,8 +122,7 @@ public abstract class Player {
 	 * @return A boolean telling whether the player is in stale mate or not
 	 */
 	public boolean isInStaleMate() {
-		//TODO Implement this method
-		return false;
+		return !this.isInCheck && !hasEscapeMoves();
 	}
 	
 	/**
@@ -126,4 +160,12 @@ public abstract class Player {
 	 * @return The opponent player
 	 */
 	public abstract Player getOpponent();
+	
+	/**
+	 * Gets the player's king piece
+	 * @return The player's king piece
+	 */
+	public Piece getPlayerKing() {
+		return this.playerKing;
+	}
 }

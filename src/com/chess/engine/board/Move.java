@@ -78,5 +78,9 @@ public abstract class Move {
 		}
 		
 	}
+
+	public Integer getDestinationCoordinate() {
+		return this.destinationCoord;
+	}
 	
 }
