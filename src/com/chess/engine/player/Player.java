@@ -91,11 +91,20 @@ public abstract class Player {
 		return false;
 	}
 	
+	/**
+	 * Tells if the player has already castled or not
+	 * @return A boolean that tells if the player is castled or not
+	 */
 	public boolean isCastled() {
 		//TODO Implement this method
 		return false;
 	}
 	
+	/**
+	 * Executes the move the player want to make
+	 * @param move The move the players want to make
+	 * @return A move transition to execute the move
+	 */
 	public MoveTransition makeMove(final Move move) {
 		return null;
 	}
