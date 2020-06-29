@@ -55,7 +55,7 @@ public class Board {
 	 * Constructor
 	 * @param builder The builder used to create the game board
 	 */
-	private Board(Builder builder) {
+	private Board(final Builder builder) {
 		this.gameBoard = createGameBoard(builder);
 		this.whitePieces = calculateActivePieces(this.gameBoard, Alliance.WHITE);
 		this.blackPieces = calculateActivePieces(this.gameBoard, Alliance.BLACK);
@@ -66,7 +66,7 @@ public class Board {
 		this.whitePlayer = new WhitePlayer(this, whiteStandardLegalMoves, blackStandardLegalMoves);
 		this.blackPlayer = new BlackPlayer(this, blackStandardLegalMoves, whiteStandardLegalMoves);
 		
-		this.currentPlayer = null;
+		this.currentPlayer = builder.nextMoveMaker.choosePlayer(this.whitePlayer, this.blackPlayer);
 	}
 
 	/**

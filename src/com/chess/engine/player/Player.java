@@ -36,11 +36,12 @@ public abstract class Player {
 	 * @param legalMoves Most legal moves the player can make (excluding en passant, castle,...)
 	 * @param opponentLegalMoves Most legal moves the opponent can make (excluding en passant, castle,...)
 	 */
-	protected Player(Board board, Collection<Move> legalMoves, Collection<Move> opponentLegalMoves) {
+	protected Player(final Board board, final Collection<Move> legalMoves, final Collection<Move> opponentLegalMoves) {
 		this.board = board;
 		this.playerKing = getKing();
 		this.legalMoves = legalMoves;
-		this.isInCheck = !Player.calculateAttacksOnTile(this.getPlayerKing().getPiecePosition(), opponentLegalMoves).isEmpty();
+		this.isInCheck = !Player.calculateAttacksOnTile(this.getPlayerKing().getPiecePosition(), opponentLegalMoves)
+				.isEmpty();
 	}
 
 	/**
@@ -49,7 +50,9 @@ public abstract class Player {
 	 * @param opponentLegalMoves All the legal moves the opponent can make
 	 * @return A list of the moves the of the opponent that attack a tile
 	 */
-	private static Collection<Move> calculateAttacksOnTile(Integer tileCoordinate, Collection<Move> opponentLegalMoves) {
+	private static Collection<Move> calculateAttacksOnTile(final Integer tileCoordinate,
+			final Collection<Move> opponentLegalMoves) {
+		
 		final List<Move> attackMoves = new ArrayList<>();
 		for (final Move move : opponentLegalMoves) {
 			if (tileCoordinate == move.getDestinationCoordinate()) {

@@ -29,6 +29,7 @@ public abstract class Piece {
 	 * Constructor
 	 * @param piecePos The position of the piece in the board (a Tile)
 	 * @param pieceAll The alliance of the piece : black or white
+	 * @param pieceType The piece type : bishop, knight,...
 	 */
 	Piece(final int piecePos, final Alliance pieceAll, final PieceType pieceType) {
 		this.pieceAlliance = pieceAll;
@@ -44,6 +45,13 @@ public abstract class Piece {
 	 * @return A list containing all the legal moves the piece can make
 	 */
 	public abstract Collection<Move> calculateLegalMoves(final Board board);
+	
+	/**
+	 * Moves the piece: creates a new piece that will be the in the move destination tile
+	 * @param move The move the piece will do
+	 * @return A new piece in the move's destination tile
+	 */
+	public abstract Piece movePiece(Move move);
 
 	/**
 	 * Function that returns the piece alliance

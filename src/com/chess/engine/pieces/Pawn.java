@@ -95,4 +95,9 @@ public class Pawn extends Piece {
 	public String toString() {
 		return Piece.PieceType.PAWN.toString();
 	}
+
+	@Override
+	public Pawn movePiece(Move move) {
+		return new Pawn(move.getDestinationCoordinate(), move.getMovedPiece().getAlliance());
+	}
 }

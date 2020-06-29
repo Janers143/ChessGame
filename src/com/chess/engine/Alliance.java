@@ -1,5 +1,9 @@
 package com.chess.engine;
 
+import com.chess.engine.player.BlackPlayer;
+import com.chess.engine.player.Player;
+import com.chess.engine.player.WhitePlayer;
+
 /**
  * Enum used to create two types of pieces : black and white
  * @author antho
@@ -22,6 +26,11 @@ public enum Alliance {
 		public boolean isWhite() {
 			return false;
 		}
+
+		@Override
+		public Player choosePlayer(final WhitePlayer whitePlayer, final BlackPlayer blackPlayer) {
+			return blackPlayer;
+		}
 		
 	},
 	WHITE {
@@ -39,6 +48,11 @@ public enum Alliance {
 		@Override
 		public boolean isWhite() {
 			return true;
+		}
+
+		@Override
+		public Player choosePlayer(final WhitePlayer whitePlayer, final BlackPlayer blackPlayer) {
+			return whitePlayer;
 		}
 	};
 	
@@ -59,4 +73,12 @@ public enum Alliance {
 	 * @return A boolean telling if the piece is white
 	 */
 	public abstract boolean isWhite();
+
+	/**
+	 * Chooses the player that will play next
+	 * @param whitePlayer The white player
+	 * @param blackPlayer The black player
+	 * @return The player that will play next
+	 */
+	public abstract Player choosePlayer(WhitePlayer whitePlayer, BlackPlayer blackPlayer);
 }
