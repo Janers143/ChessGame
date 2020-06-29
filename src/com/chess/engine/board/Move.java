@@ -35,6 +35,15 @@ public abstract class Move {
 		this.board = board;
 	}
 	
+	/**
+	 * Gets the destination tile of the current move
+	 * @return The destination tile of the current move
+	 */
+	public Integer getDestinationCoordinate() {
+		return this.destinationCoord;
+	}
+
+	public abstract Board execute();
 	
 	/**
 	 * Class used to describe a major move
@@ -50,6 +59,12 @@ public abstract class Move {
 		 */
 		public MajorMove(final Board board, final Piece movedPiece, final int destinationaCoord) {
 			super(board, movedPiece, destinationaCoord);
+		}
+
+		@Override
+		public Board execute() {
+			// TODO Auto-generated method stub
+			return null;
 		}
 		
 	}
@@ -76,11 +91,13 @@ public abstract class Move {
 			super(board, movedPiece, destinationCoord);
 			this.attackedPiece = attackedPiece;
 		}
-		
-	}
 
-	public Integer getDestinationCoordinate() {
-		return this.destinationCoord;
+		@Override
+		public Board execute() {
+			// TODO Auto-generated method stub
+			return null;
+		}
+		
 	}
 	
 }

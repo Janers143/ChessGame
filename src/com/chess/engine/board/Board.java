@@ -36,9 +36,20 @@ public class Board {
 	 */
 	private final Collection<Piece> blackPieces;
 	
+	/**
+	 * The white player
+	 */
 	private final WhitePlayer whitePlayer;
 	
+	/**
+	 * The black player
+	 */
 	private final BlackPlayer blackPlayer;
+	
+	/**
+	 * The current player
+	 */
+	private final Player currentPlayer;
 
 	/**
 	 * Constructor
@@ -54,6 +65,8 @@ public class Board {
 		
 		this.whitePlayer = new WhitePlayer(this, whiteStandardLegalMoves, blackStandardLegalMoves);
 		this.blackPlayer = new BlackPlayer(this, blackStandardLegalMoves, whiteStandardLegalMoves);
+		
+		this.currentPlayer = null;
 	}
 
 	/**
@@ -162,6 +175,14 @@ public class Board {
 	 */
 	public Tile getTile(final int tileCoord) {
 		return null;
+	}
+	
+	/**
+	 * Gets the current player (the one that has to move)
+	 * @return The player that has to move
+	 */
+	public Player currentPlayer() {
+		return this.currentPlayer;
 	}
 	
 	@Override
